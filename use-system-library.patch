@@ -1,0 +1,30 @@
+From e1bf49142427def34d2b12e54e73aeb3e5aad605 Mon Sep 17 00:00:00 2001
+From: Jan Chaloupka <jchaloup@redhat.com>
+Date: Thu, 8 Oct 2015 14:32:37 +0200
+Subject: [PATCH] use system library
+
+---
+ cgo/clapack/clapack.go | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/cgo/clapack/clapack.go b/cgo/clapack/clapack.go
+index fb13700..e5c6835 100644
+--- a/cgo/clapack/clapack.go
++++ b/cgo/clapack/clapack.go
+@@ -9,10 +9,9 @@
+ // Links are provided to the NETLIB fortran implementation/dependencies for each function.
+ package clapack
+ 
+-/*
+-#cgo CFLAGS: -g -O2
+-#include "lapacke.h"
+-*/
++// #cgo CFLAGS: -g -O2 -I/usr/include/lapacke
++// #cgo LDFLAGS: -L/usr/lib64 -llapacke -llapack
++// #include <lapacke.h>
+ import "C"
+ 
+ import (
+-- 
+1.9.3
+
